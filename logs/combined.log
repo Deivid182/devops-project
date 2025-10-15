@@ -1,0 +1,2 @@
+{"level":"info","message":"Hello world from logger!","service":"user-service"}
+{"level":"info","message":"::1 - - [15/Oct/2025:08:05:03 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36\"","service":"user-service"}
