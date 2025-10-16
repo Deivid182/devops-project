@@ -1,0 +1,12 @@
+@local_base_url = http://localhost:3000/api
+@auth_resource = auth
+
+# @name register
+POST {{local_base_url}}/{{auth_resource}}/register
+Content-Type: application/json
+
+{
+  "name": "David Peralta Mendoza",
+  "email": "dave@davecoder.com",
+  "password": "Test123@"
+}

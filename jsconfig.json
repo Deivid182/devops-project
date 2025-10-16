@@ -9,7 +9,9 @@
       "#routes/*": ["routes/*"],
       "#services/*": ["services/*"],
       "#middleware/*": ["middleware/*"],
-      "#validations/*": ["validations/*"]
+      "#validations/*": ["validations/*"],
+      "#exceptions/*": ["exceptions/*"],
+      "#common/*": ["common/*"]
     },
     "module": "ESNext",
     "moduleResolution": "node",

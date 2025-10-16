@@ -11,7 +11,9 @@
     "#routes/*": "./src/routes/*.js",
     "#services/*": "./src/services/*.js",
     "#middleware/*": "./src/middleware/*.js",
-    "#validations/*": "./src/validations/*.js"
+    "#validations/*": "./src/validations/*.js",
+    "#exceptions/*": "./src/exceptions/*.js",
+    "#common/*": "./src/common/*.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -38,6 +40,7 @@
   "homepage": "https://github.com/Deivid182/devops-project#readme",
   "dependencies": {
     "@neondatabase/serverless": "^1.0.2",
+    "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
@@ -46,7 +49,8 @@
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.1",
-    "winston": "^3.18.3"
+    "winston": "^3.18.3",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "drizzle-kit": "^0.31.5"
