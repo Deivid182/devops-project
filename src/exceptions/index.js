@@ -7,6 +7,18 @@ export class BadRequestException extends Exception {
   }
 }
 
+export class UnauthorizedException extends Exception {
+  constructor(message = 'Unauthorized', statusCode = HttpStatus.UNAUTHORIZED) {
+    super(message, statusCode);
+  }
+}
+
+export class ForbiddenException extends Exception {
+  constructor(message = 'Forbidden', statusCode = HttpStatus.FORBIDDEN) {
+    super(message, statusCode);
+  }
+}
+
 export class ConflictException extends Exception {
   constructor(message = 'Conflict', statusCode = HttpStatus.CONFLICT) {
     super(message, statusCode);

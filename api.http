@@ -1,6 +1,8 @@
 @local_base_url = http://localhost:3000/api
 @auth_resource = auth
 
+###
+
 # @name register
 POST {{local_base_url}}/{{auth_resource}}/register
 Content-Type: application/json
@@ -10,3 +12,22 @@ Content-Type: application/json
   "email": "dave@davecoder.com",
   "password": "Test123@"
 }
+
+###
+
+# @name login
+
+POST {{local_base_url}}/{{auth_resource}}/login
+Content-Type: application/json
+
+{
+  "email": "dave@davecoder.com",
+  "password": "Test123@"
+}
+
+###
+
+# @name logout
+
+POST {{local_base_url}}/{{auth_resource}}/logout
+Content-Type: application/json

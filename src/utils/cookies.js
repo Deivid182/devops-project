@@ -39,5 +39,8 @@ export const cookies = {
    * @param {string} name 
    */
 
-  get: (req, name) => req.cookies[name],
+  get: (req, name) => {
+    console.log(JSON.stringify(req.cookies));
+    return req.cookies[name];
+  },
 };

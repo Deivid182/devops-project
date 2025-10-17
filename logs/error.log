@@ -13,3 +13,25 @@
 {"level":"error","service":"user-service","statusCode":409}
 {"level":"error","service":"user-service","statusCode":409}
 {"level":"error","service":"user-service","statusCode":409}
+{"level":"error","service":"user-service","statusCode":401}
+{"level":"error","service":"user-service","statusCode":401}
+{"level":"error","service":"user-service","statusCode":401}
+{"level":"error","service":"user-service","statusCode":409}
+{"level":"error","service":"user-service","statusCode":401}
+{"level":"error","service":"user-service","statusCode":401}
+{"level":"error","service":"user-service","statusCode":401}
+{"level":"error","service":"user-service","statusCode":401}
+{"level":"error","service":"user-service","statusCode":401}
+{"level":"error","service":"user-service","statusCode":401}
+{"level":"error","service":"user-service"}
+{"level":"error","message":"jwt malformed","name":"JsonWebTokenError","service":"user-service"}
+{"level":"error","service":"user-service","statusCode":401}
+{"level":"error","message":"jwt malformed","name":"JsonWebTokenError","service":"user-service"}
+{"level":"error","service":"user-service","statusCode":401}
+{"level":"error","message":"jwt malformed","name":"JsonWebTokenError","service":"user-service"}
+{"level":"error","service":"user-service","statusCode":401}
+{"level":"error","service":"user-service"}
+{"level":"error","service":"user-service"}
+{"level":"error","message":"jwt malformed","name":"JsonWebTokenError","service":"user-service"}
+{"level":"error","service":"user-service","statusCode":401}
+{"level":"error","service":"user-service"}
