@@ -32,7 +32,7 @@ export class InternalServerErrorException extends Exception {
 }
 
 export class NotFoundException extends Exception {
-  constructor(message = 'Not found', statusCode = 404) {
+  constructor(message = 'Not found', statusCode = HttpStatus.NOT_FOUND) {
     super(message, statusCode);
   }
 }

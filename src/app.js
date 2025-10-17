@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import logger from '#config/logger';
 import authRouter from '#routes/auth.routes';
 import { securityMiddleware } from '#middleware/security.middleware';
+import userRouter from '#routes/user.routes';
 
 const app = express();
 app.use(helmet());
@@ -18,10 +19,6 @@ app.use(cors());
 app.use(morgan('combined', { stream: { write: (message) => logger.info(message.trim()) } }));
 app.use(securityMiddleware);
 app.use((err, req, res, _next) => {
-  // logger.error(err.stack);
-  console.log('-------------');
-  console.log({ err });
-  console.log('-------------');
   const { statusCode } = err;
   if(statusCode){
     return res.status(err.statusCode).json({ message: err.message });
@@ -44,5 +41,6 @@ app.get('/api', (req, res) => {
 });
 
 app.use('/api/auth', authRouter);
+app.use('/api/users', userRouter);
 
 export default app;

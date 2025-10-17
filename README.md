@@ -139,11 +139,14 @@ Here's how a typical user registration request flows through the system:
 ## Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
-- PostgreSQL database (or Neon account)
+- Docker and Docker Compose installed
+- Node.js 18+ (for local development without Docker)
+- Neon Database account with a project set up
 - npm or yarn
 
-### Installation
+### Quick Start with Docker (Recommended)
+
+#### Development Environment
 
 1. Clone the repository:
 ```bash
@@ -151,15 +154,63 @@ git clone <repository-url>
 cd devops-project
 ```
 
-2. Install dependencies:
+2. Set up Neon Local environment:
+```bash
+cp .env.development .env.development.local
+# Edit .env.development.local with your Neon credentials:
+# - NEON_API_KEY: Your Neon API key
+# - NEON_PROJECT_ID: Your Neon project ID
+# - PARENT_BRANCH_ID: The branch ID to create ephemeral branches from
+```
+
+3. Start development environment with Docker:
+```bash
+# Load your development environment variables
+export $(grep -v '^#' .env.development.local | xargs)
+
+# Start development environment
+docker-compose -f docker-compose.dev.yml up --build
+```
+
+This creates:
+- Neon Local proxy with ephemeral database branches
+- Node.js app with hot reloading on port 3000
+- Automatic database branch cleanup when containers stop
+
+#### Production Environment
+
+1. Set up production environment variables:
+```bash
+# Update .env.production with your actual Neon Cloud connection string
+export DATABASE_URL="postgres://username:password@ep-example.neon.tech/dbname?sslmode=require"
+export JWT_SECRET="your-production-jwt-secret"
+```
+
+2. Deploy production environment:
+```bash
+docker-compose -f docker-compose.prod.yml up --build -d
+```
+
+### Local Development (Without Docker)
+
+1. Install dependencies:
 ```bash
 npm install
 ```
 
-3. Set up environment variables:
+2. Set up environment variables:
 ```bash
-cp .env.example .env
-# Edit .env with your database URL and JWT secrets
+cp .env.development .env
+# Edit .env with your Neon database credentials
+```
+
+3. Start Neon Local proxy:
+```bash
+docker run --name neon-local -p 5432:5432 \
+  -e NEON_API_KEY=${NEON_API_KEY} \
+  -e NEON_PROJECT_ID=${NEON_PROJECT_ID} \
+  -e PARENT_BRANCH_ID=${PARENT_BRANCH_ID} \
+  neondatabase/neon_local:latest
 ```
 
 4. Run database migrations:
@@ -228,6 +279,32 @@ npm run lint          # Run ESLint
 npm run lint:fix      # Fix ESLint issues automatically
 npm run format        # Format code with Prettier
 npm run format:check  # Check code formatting
+
+# Docker operations
+docker-compose -f docker-compose.dev.yml up --build     # Start development environment
+docker-compose -f docker-compose.prod.yml up --build -d # Start production environment
+docker-compose -f docker-compose.dev.yml logs -f app    # Follow application logs
+docker-compose -f docker-compose.dev.yml exec app bash  # Access container shell
+```
+
+### Database Operations
+
+#### Development (with Neon Local)
+```bash
+# Run migrations on development
+docker-compose -f docker-compose.dev.yml exec app npm run db:migrate
+
+# Access Drizzle Studio (database GUI)
+docker-compose -f docker-compose.dev.yml exec app npm run db:studio
+
+# Generate new migrations
+docker-compose -f docker-compose.dev.yml exec app npm run db:generate
+```
+
+#### Production (with Neon Cloud)
+```bash
+# Run migrations on production
+docker-compose -f docker-compose.prod.yml exec app npm run db:migrate
 ```
 
 ### Path Imports System
@@ -265,9 +342,15 @@ Content-Type: application/json
 
 ```
 devops-project/
-├── drizzle/                 # Database migrations
-│   ├── 0000_*.sql          # Migration files
-│   └── meta/               # Migration metadata
+├── Dockerfile               # Multi-stage Docker build
+├── .dockerignore           # Docker build optimization
+├── docker-compose.dev.yml  # Development with Neon Local
+├── docker-compose.prod.yml # Production with Neon Cloud
+├── .env.development        # Development environment template
+├── .env.production         # Production environment template
+├── drizzle/                # Database migrations
+│   ├── 0000_*.sql         # Migration files
+│   └── meta/              # Migration metadata
 ├── logs/                   # Application logs
 ├── src/
 │   ├── app.js              # Express app configuration
@@ -292,6 +375,28 @@ devops-project/
 ├── jsconfig.json           # JavaScript project configuration
 └── package.json            # Project dependencies and scripts
 ```
+
+## Docker Environment Configuration
+
+### Development Environment
+- **Neon Local**: Creates ephemeral branches automatically for each container restart
+- **Database URL**: `postgres://user:password@neon-local:5432/main`
+- **Hot Reloading**: Enabled via volume mounts for real-time code changes
+- **Debug Mode**: Full logging and development tools available
+- **Isolation**: Each development session gets a fresh database branch
+
+### Production Environment
+- **Neon Cloud**: Direct connection to production Neon database
+- **Database URL**: Actual Neon connection string with SSL
+- **Security**: Read-only filesystem, non-root user, resource limits
+- **Health Checks**: Automatic container health monitoring
+- **Scalability**: Optimized for production deployment with proper resource management
+
+### Multi-Stage Dockerfile Benefits
+- **Development Stage**: Includes all dev dependencies and debugging tools
+- **Production Stage**: Minimal image with only runtime dependencies
+- **Security**: Non-root user, read-only filesystem in production
+- **Optimization**: Separate dependency layer for better Docker caching
 
 ## Strengths & Trade-offs
 
