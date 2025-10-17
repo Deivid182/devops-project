@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # Neon Local proxy service for development
+  neon-local:
+    image: neondatabase/neon_local:latest
+    container_name: devops-neon-local
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env.development
+    # environment:
+      # These create ephemeral branches automatically
+      # NEON_API_KEY: ${NEON_API_KEY}
+      # NEON_PROJECT_ID: ${NEON_PROJECT_ID}
+      # PARENT_BRANCH_ID: ${PARENT_BRANCH_ID}
+    volumes:
+      # Persist branch metadata per git branch (optional)
+      - ./.neon_local/:/tmp/.neon_local
+      - ./.git/HEAD:/tmp/.git/HEAD:ro,consistent
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h localhost -p 5432"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Application service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    container_name: devops-app-dev
+    ports:
+    # using env variables
+      - "${PORT}:${PORT}"
+    env_file:
+      - .env.development
+    # environment:
+    #   - NODE_ENV=development
+    #   - DATABASE_URL=postgres://user:password@neon-local:5432/main
+    volumes:
+      # Mount source code for hot reloading in development
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      neon-local:
+        condition: service_healthy
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
