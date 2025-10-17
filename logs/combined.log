@@ -99,3 +99,21 @@
 {"level":"info","message":"User logged out successfully","service":"user-service"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:07:55:36 +0000] \"POST /api/auth/logout HTTP/1.1\" 200 52 \"-\" \"vscode-restclient\"","service":"user-service"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:07:55:38 +0000] \"POST /api/auth/logout HTTP/1.1\" 401 1315 \"-\" \"vscode-restclient\"","service":"user-service"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:08:57:36 +0000] \"GET /api/health HTTP/1.1\" 500 35 \"-\" \"vscode-restclient\"","service":"user-service"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:08:58:24 +0000] \"GET /api/health HTTP/1.1\" 404 149 \"-\" \"vscode-restclient\"","service":"user-service"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:08:59:43 +0000] \"GET /api/health HTTP/1.1\" 500 35 \"-\" \"vscode-restclient\"","service":"user-service"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:09:00:33 +0000] \"GET /api/health HTTP/1.1\" 500 35 \"-\" \"vscode-restclient\"","service":"user-service"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:09:02:25 +0000] \"GET /api/health HTTP/1.1\" 500 35 \"-\" \"vscode-restclient\"","service":"user-service"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:09:07:11 +0000] \"GET /api/health HTTP/1.1\" 404 149 \"-\" \"vscode-restclient\"","service":"user-service"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:09:09:09 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"vscode-restclient\"","service":"user-service"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:09:09:13 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"vscode-restclient\"","service":"user-service"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:09:09:14 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"vscode-restclient\"","service":"user-service"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:09:09:15 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"vscode-restclient\"","service":"user-service"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:09:09:15 +0000] \"GET /health HTTP/1.1\" 200 77 \"-\" \"vscode-restclient\"","service":"user-service"}
+{"ip":"::ffff:127.0.0.1","level":"warn","message":"Rate limit exceeded","path":"/health","service":"user-service","userAgent":"vscode-restclient"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:09:09:16 +0000] \"GET /health HTTP/1.1\" 403 51 \"-\" \"vscode-restclient\"","service":"user-service"}
+{"ip":"::ffff:127.0.0.1","level":"warn","message":"Rate limit exceeded","path":"/api/auth/register","service":"user-service","userAgent":"vscode-restclient"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:09:10:02 +0000] \"POST /api/auth/register HTTP/1.1\" 403 51 \"-\" \"vscode-restclient\"","service":"user-service"}
+{"ip":"::ffff:127.0.0.1","level":"warn","message":"Rate limit exceeded","path":"/api/auth/register","service":"user-service","userAgent":"vscode-restclient"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:09:10:03 +0000] \"POST /api/auth/register HTTP/1.1\" 403 51 \"-\" \"vscode-restclient\"","service":"user-service"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:09:13:55 +0000] \"GET /health HTTP/1.1\" 500 35 \"-\" \"vscode-restclient\"","service":"user-service"}

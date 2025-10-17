@@ -1,5 +1,10 @@
 @local_base_url = http://localhost:3000/api
+@local_health_url = http://localhost:3000
 @auth_resource = auth
+
+###
+# @name health
+GET {{local_health_url}}/health
 
 ###
 
