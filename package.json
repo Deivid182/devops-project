@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "imports": {
+    "#src/*": "./src/*",
     "#config/*": "./src/config/*.js",
     "#models/*": "./src/models/*.js",
     "#utils/*": "./src/utils/*.js",
@@ -48,6 +49,7 @@
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
+    "cross-env": "^10.1.0",
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.44.6",
     "express": "^5.1.0",
@@ -58,8 +60,13 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
+    "@eslint/js": "^9.37.0",
     "drizzle-kit": "^0.31.5",
+    "eslint": "^9.37.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
     "jest": "^30.2.0",
+    "prettier": "^3.6.2",
     "supertest": "^7.1.4"
   }
 }

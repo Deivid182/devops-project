@@ -36,3 +36,10 @@ Content-Type: application/json
 
 POST {{local_base_url}}/{{auth_resource}}/logout
 Content-Type: application/json
+
+
+###
+
+# @name nonexistent
+
+GET {{local_base_url}}/nonexistent

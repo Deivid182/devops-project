@@ -7,6 +7,7 @@ import logger from '#config/logger';
 import authRouter from '#routes/auth.routes';
 import { securityMiddleware } from '#middleware/security.middleware';
 import userRouter from '#routes/user.routes';
+import { HttpStatus } from '#common/http-status/index';
 
 const app = express();
 app.use(helmet());
@@ -29,18 +30,22 @@ app.use((err, req, res, _next) => {
 
 app.get('/', (req, res) => {
   logger.info('Hello world from logger!');
-  res.send('Hello world from the backend!').status(200);
+  res.send('Hello world from the backend!').status(HttpStatus.OK);
 });
 
 app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString(), uptime: process.uptime() });
+  res.status(HttpStatus.OK).json({ status: 'ok', timestamp: new Date().toISOString(), uptime: process.uptime() });
 });
 
 app.get('/api', (req, res) => {
-  res.status(200).json({ message: 'API is running' });
+  res.status(HttpStatus.OK).json({ message: 'API is running' });
 });
 
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
+
+app.use((req, res) => {
+  res.status(HttpStatus.NOT_FOUND).json({ message: 'Not found' });
+});
 
 export default app;

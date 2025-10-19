@@ -117,3 +117,7 @@
 {"ip":"::ffff:127.0.0.1","level":"warn","message":"Rate limit exceeded","path":"/api/auth/register","service":"user-service","userAgent":"vscode-restclient"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:09:10:03 +0000] \"POST /api/auth/register HTTP/1.1\" 403 51 \"-\" \"vscode-restclient\"","service":"user-service"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [17/Oct/2025:09:13:55 +0000] \"GET /health HTTP/1.1\" 500 35 \"-\" \"vscode-restclient\"","service":"user-service"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [18/Oct/2025:23:51:25 +0000] \"GET /health HTTP/1.1\" 200 75 \"-\" \"-\"","service":"user-service"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [18/Oct/2025:23:51:26 +0000] \"GET /api HTTP/1.1\" 200 28 \"-\" \"-\"","service":"user-service"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [18/Oct/2025:23:51:26 +0000] \"GET /non-existent-endpoint HTTP/1.1\" 404 23 \"-\" \"-\"","service":"user-service"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [18/Oct/2025:23:53:03 +0000] \"GET /api/nonexistent HTTP/1.1\" 404 23 \"-\" \"vscode-restclient\"","service":"user-service"}
