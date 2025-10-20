@@ -16,10 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors());
 
-// write logs inside logs folder
 app.use(morgan('combined', { stream: { write: (message) => logger.info(message.trim()) } }));
 app.use(securityMiddleware);
-app.use((err, req, res, _next) => {
+app.use((err, _, res, _next) => {
   const { statusCode } = err;
   if(statusCode){
     return res.status(err.statusCode).json({ message: err.message });
@@ -28,23 +27,23 @@ app.use((err, req, res, _next) => {
   }
 });
 
-app.get('/', (req, res) => {
+app.get('/', (_, res) => {
   logger.info('Hello world from logger!');
   res.send('Hello world from the backend!').status(HttpStatus.OK);
 });
 
-app.get('/health', (req, res) => {
+app.get('/health', (_, res) => {
   res.status(HttpStatus.OK).json({ status: 'ok', timestamp: new Date().toISOString(), uptime: process.uptime() });
 });
 
-app.get('/api', (req, res) => {
+app.get('/api', (_, res) => {
   res.status(HttpStatus.OK).json({ message: 'API is running' });
 });
 
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
 
-app.use((req, res) => {
+app.use((_, res) => {
   res.status(HttpStatus.NOT_FOUND).json({ message: 'Not found' });
 });
 

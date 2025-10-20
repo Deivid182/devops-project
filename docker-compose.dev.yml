@@ -31,7 +31,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: dev
     container_name: devops-app-dev
     ports:
     # using env variables

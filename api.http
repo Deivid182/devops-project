@@ -13,8 +13,8 @@ POST {{local_base_url}}/{{auth_resource}}/register
 Content-Type: application/json
 
 {
-  "name": "David Peralta Mendoza",
-  "email": "dave@davecoder.com",
+  "name": "John Doe",
+  "email": "john@johncoder.com",
   "password": "Test123@"
 }
 

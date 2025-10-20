@@ -5,18 +5,18 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
       target: production
     container_name: devops-app-prod
     ports:
-      - "3000:3000"
+      - "${PORT}:${PORT}"
     env_file:
       - .env.production
-    environment:
-      - NODE_ENV=production
+    # environment:
+      # - NODE_ENV=production
       # DATABASE_URL should be injected via environment or secrets management
-      - DATABASE_URL=${DATABASE_URL}
-      - JWT_SECRET=${JWT_SECRET}
+      # - DATABASE_URL=${DATABASE_URL}
+      # - JWT_SECRET=${JWT_SECRET}
     restart: unless-stopped
     networks:
       - app-network
