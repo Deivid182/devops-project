@@ -16,11 +16,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors());
 
-app.use(morgan('combined', { stream: { write: (message) => logger.info(message.trim()) } }));
+app.use(
+  morgan('combined', {
+    stream: { write: message => logger.info(message.trim()) },
+  })
+);
 app.use(securityMiddleware);
 app.use((err, _, res, _next) => {
   const { statusCode } = err;
-  if(statusCode){
+  if (statusCode) {
     return res.status(err.statusCode).json({ message: err.message });
   } else {
     return res.status(500).json({ message: 'Internal server error' });
@@ -33,7 +37,13 @@ app.get('/', (_, res) => {
 });
 
 app.get('/health', (_, res) => {
-  res.status(HttpStatus.OK).json({ status: 'ok', timestamp: new Date().toISOString(), uptime: process.uptime() });
+  res
+    .status(HttpStatus.OK)
+    .json({
+      status: 'ok',
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime(),
+    });
 });
 
 app.get('/api', (_, res) => {

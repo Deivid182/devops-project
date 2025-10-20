@@ -26,7 +26,10 @@ export class ConflictException extends Exception {
 }
 
 export class InternalServerErrorException extends Exception {
-  constructor(message = 'Internal server error', statusCode = HttpStatus.INTERNAL_SERVER_ERROR) {
+  constructor(
+    message = 'Internal server error',
+    statusCode = HttpStatus.INTERNAL_SERVER_ERROR
+  ) {
     super(message, statusCode);
   }
 }

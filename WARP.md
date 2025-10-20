@@ -19,6 +19,7 @@ This is a Node.js/Express REST API with PostgreSQL database using Drizzle ORM. T
 ## Path Imports System
 
 The project uses Node.js import maps (defined in `package.json`) for clean imports:
+
 - `#config/*` → `./src/config/*.js`
 - `#models/*` → `./src/models/*.js`
 - `#utils/*` → `./src/utils/*.js`
@@ -61,6 +62,7 @@ npm run format:check  # Check code formatting
 ## Authentication System
 
 The project implements JWT-based authentication:
+
 - User registration endpoint: `POST /api/auth/register`
 - JWT tokens are set as HTTP-only cookies via `cookies.set()`
 - Password hashing using bcrypt
@@ -69,6 +71,7 @@ The project implements JWT-based authentication:
 ## Logging
 
 Uses Winston logger configured in `src/config/logger.js`:
+
 - Error logs: `logs/error.log`
 - Combined logs: `logs/combined.log`
 - Console logging enabled in non-production environments

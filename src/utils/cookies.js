@@ -1,6 +1,4 @@
 export const cookies = {
-
-
   /**
    * @returns {import('express').CookieOptions}
    */
@@ -12,21 +10,20 @@ export const cookies = {
   }),
 
   /**
-   * 
-   * @param {import('express').Response} res 
-   * @param {string} name 
-   * @param {string} value 
+   *
+   * @param {import('express').Response} res
+   * @param {string} name
+   * @param {string} value
    * @param {import('express').CookieOptions} options
    */
   set: (res, name, value, options) => {
     res.cookie(name, value, { ...cookies.getOptions(), ...options });
   },
 
-
   /**
-   * 
-   * @param {import('express').Response} res 
-   * @param {string} name 
+   *
+   * @param {import('express').Response} res
+   * @param {string} name
    * @param {import('express').CookieOptions} options
    */
   clear: (res, name, options) => {
@@ -34,9 +31,9 @@ export const cookies = {
   },
 
   /**
-   * 
-   * @param {import('express').Request} req 
-   * @param {string} name 
+   *
+   * @param {import('express').Request} req
+   * @param {string} name
    */
 
   get: (req, name) => {

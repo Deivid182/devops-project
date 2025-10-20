@@ -7,7 +7,7 @@ const userRouter = express.Router();
 
 userRouter.use(authMiddleware);
 
-userRouter.get('/', roleMiddleware(['admin']),  UsersController.getAll);
+userRouter.get('/', roleMiddleware(['admin']), UsersController.getAll);
 
 userRouter.get('/:id', UsersController.getOne);
 

@@ -10,4 +10,4 @@ authRouter.post('/login', AuthController.login);
 
 authRouter.post('/logout', authMiddleware, AuthController.logout);
 
-export default authRouter; 
+export default authRouter;

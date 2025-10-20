@@ -9,10 +9,9 @@ import { cookies } from '#utils/cookies';
 import { comparePassword } from '#utils/compare-password';
 
 export class AuthService {
-  
   /**
    * Creates a new user.
-   * 
+   *
    * @param {Object} payload
    * @param {Object} payload.userData
    * @param {string} payload.userData.name
@@ -20,29 +19,36 @@ export class AuthService {
    * @param {string} payload.userData.password
    * @param {string} payload.userData.role
    * @param {import('express').Response} payload.res
-   * 
+   *
    * @throws {ConflictException} If a user with the same email already exists.
    * @throws {InternalServerErrorException} If an error occurs while creating a new user.
-   * 
+   *
    */
   static async createUser(payload) {
     const { userData, res } = payload;
 
     try {
-      const existingUser = await db.select().from(users).where(eq(users.email, userData.email)).limit(1);
+      const existingUser = await db
+        .select()
+        .from(users)
+        .where(eq(users.email, userData.email))
+        .limit(1);
 
-      if(existingUser.length) {
+      if (existingUser.length) {
         throw new ConflictException('User already exists');
       }
 
       const hashedPassword = await hashPassword(userData.password);
 
-      const [newUser] = await db.insert(users).values({ ...userData, password: hashedPassword }).returning({
-        id: users.id,
-        name: users.name,
-        email: users.email,
-        role: users.role,
-      });
+      const [newUser] = await db
+        .insert(users)
+        .values({ ...userData, password: hashedPassword })
+        .returning({
+          id: users.id,
+          name: users.name,
+          email: users.email,
+          role: users.role,
+        });
 
       const { id, name, email, role } = newUser;
       logger.info(`User created successfully: ${email}`);
@@ -60,35 +66,46 @@ export class AuthService {
 
   /**
    * Creates a new user.
-   * 
+   *
    * @param {Object} payload
    * @param {Object} payload.userData
    * @param {string} payload.userData.email
    * @param {string} payload.userData.password
    * @param {import('express').Response} payload.res
-   * 
+   *
    * @throws {ConflictException} If a user with the same email already exists.
    * @throws {InternalServerErrorException} If an error occurs while creating a new user.
-   * 
+   *
    */
 
   static async login(payload) {
-    const { userData: { email, password }, res } = payload;
+    const {
+      userData: { email, password },
+      res,
+    } = payload;
 
     try {
       // check if user exists
 
-      const [user] = await db.select().from(users).where(eq(users.email, email)).limit(1);
+      const [user] = await db
+        .select()
+        .from(users)
+        .where(eq(users.email, email))
+        .limit(1);
 
-      if(!user) {
-        throw new UnauthorizedException('Verify your credentials and try again');
+      if (!user) {
+        throw new UnauthorizedException(
+          'Verify your credentials and try again'
+        );
       }
 
       // check if password is correct
       const isCorrectPassword = await comparePassword(password, user.password);
 
-      if(!isCorrectPassword) {
-        throw new UnauthorizedException('Verify your credentials and try again');
+      if (!isCorrectPassword) {
+        throw new UnauthorizedException(
+          'Verify your credentials and try again'
+        );
       }
 
       // generate token
@@ -96,7 +113,7 @@ export class AuthService {
         id: user.id,
         name: user.name,
         email: user.email,
-        role: user.role
+        role: user.role,
       };
 
       const auth = jwttoken.sign(userFormatted);
@@ -113,16 +130,13 @@ export class AuthService {
   }
 
   static async logout(res) {
-
     try {
-      
       cookies.clear(res, 'auth');
-  
+
       logger.info('User logged out successfully');
     } catch (error) {
       logger.error(error);
-      throw error; 
+      throw error;
     }
-
   }
 }
