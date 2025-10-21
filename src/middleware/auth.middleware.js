@@ -57,19 +57,19 @@ export async function authMiddleware(req, res, next) {
  */
 export const roleMiddleware =
   async (allowedRoles = []) =>
-  (req, res, next) => {
-    try {
-      if (!req.user) {
-        throw new UnauthorizedException('Unauthorized');
-      }
+    (req, res, next) => {
+      try {
+        if (!req.user) {
+          throw new UnauthorizedException('Unauthorized');
+        }
 
-      if (!allowedRoles.includes(req.user.role)) {
-        throw new UnauthorizedException('Unauthorized');
-      }
+        if (!allowedRoles.includes(req.user.role)) {
+          throw new UnauthorizedException('Unauthorized');
+        }
 
-      next();
-    } catch (error) {
-      logger.error(error);
-      throw error;
-    }
-  };
+        next();
+      } catch (error) {
+        logger.error(error);
+        throw error;
+      }
+    };
