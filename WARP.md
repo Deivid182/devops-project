@@ -16,6 +16,82 @@ This is a Node.js/Express REST API with PostgreSQL database using Drizzle ORM. T
 - **Validations** (`src/validations/`) - Zod schemas for input validation
 - **Exceptions** (`src/exceptions/`) - Custom exception classes
 
+
+## Tree Structure
+
+```bash
+├── api.http
+├── docker-compose.dev.yml
+├── docker-compose.prod.yml
+├── Dockerfile
+├── Dockerfile.prod
+├── DOCKER_SETUP.md
+├── drizzle
+│   ├── 0000_melted_retro_girl.sql
+│   └── meta
+│       ├── 0000_snapshot.json
+│       └── _journal.json
+├── drizzle.config.js
+├── eslint.config.js
+├── index.js
+├── jest.config.js
+├── jsconfig.json
+├── logs
+│   ├── combined.log
+│   └── error.log
+├── package.json
+├── package-lock.json
+├── README.md
+├── scripts
+│   ├── dev.sh
+│   └── prod.sh
+├── src
+│   ├── app.js
+│   ├── common
+│   │   ├── http-status
+│   │   │   └── index.js
+│   │   └── validations
+│   │       └── id.validation.js
+│   ├── config
+│   │   ├── arcject.js
+│   │   ├── database.js
+│   │   └── logger.js
+│   ├── controllers
+│   │   ├── auth.controller.js
+│   │   └── users.controller.js
+│   ├── exceptions
+│   │   ├── exception.js
+│   │   └── index.js
+│   ├── index.js
+│   ├── middleware
+│   │   ├── auth.middleware.js
+│   │   ├── role.middleware.js
+│   │   ├── security.middleware.js
+│   │   └── validation-error.middleware.js
+│   ├── models
+│   │   └── user.model.js
+│   ├── routes
+│   │   ├── auth.routes.js
+│   │   └── user.routes.js
+│   ├── server.js
+│   ├── services
+│   │   ├── auth.service.js
+│   │   └── users.service.js
+│   ├── tests
+│   │   └── app.spec.js
+│   ├── utils
+│   │   ├── compare-password.js
+│   │   ├── cookies.js
+│   │   ├── hash-password.js
+│   │   └── jwt.js
+│   └── validations
+│       ├── auth.validation.js
+│       ├── format.js
+│       └── users
+│           └── update-user.validation.js
+└── WARP.md
+```
+
 ## Path Imports System
 
 The project uses Node.js import maps (defined in `package.json`) for clean imports:
