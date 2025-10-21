@@ -16,7 +16,6 @@ This is a Node.js/Express REST API with PostgreSQL database using Drizzle ORM. T
 - **Validations** (`src/validations/`) - Zod schemas for input validation
 - **Exceptions** (`src/exceptions/`) - Custom exception classes
 
-
 ## Tree Structure
 
 ```bash

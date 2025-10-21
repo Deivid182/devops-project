@@ -37,13 +37,11 @@ app.get('/', (_, res) => {
 });
 
 app.get('/health', (_, res) => {
-  res
-    .status(HttpStatus.OK)
-    .json({
-      status: 'ok',
-      timestamp: new Date().toISOString(),
-      uptime: process.uptime(),
-    });
+  res.status(HttpStatus.OK).json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+  });
 });
 
 app.get('/api', (_, res) => {

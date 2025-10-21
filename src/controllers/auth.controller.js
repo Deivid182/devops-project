@@ -23,12 +23,10 @@ export class AuthController {
       res,
     });
 
-    return res
-      .status(HttpStatus.CREATED)
-      .json({
-        message: 'User registered successfully',
-        data: { id, name, email, role },
-      });
+    return res.status(HttpStatus.CREATED).json({
+      message: 'User registered successfully',
+      data: { id, name, email, role },
+    });
   }
 
   /**
